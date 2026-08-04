@@ -1,15 +1,13 @@
-// У файлі render-functions.js створи екземпляр SimpleLightbox для роботи з модальним вікном та зберігай функції для відображення елементів інтерфейсу:
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
 
-// createGallery(images). Ця функція повинна приймати масив images, створювати HTML-розмітку для галереї, додавати її в контейнер галереї та викликати метод екземпляра SimpleLightbox refresh(). Нічого не повертає.
-// clearGallery(). Ця функція нічого не приймає та повинна очищати вміст контейнера галереї. Нічого не повертає.
-// showLoader(). Ця функція нічого не приймає, повинна додавати клас для відображення лоадера. Нічого не повертає.
-// hideLoader(). Ця функція нічого не приймає, повинна прибирати клас для відображення лоадера. Нічого не повертає.
 
-const galleryContairer = document.querySelector(".gallery")
+const galleryContainer = document.querySelector(".gallery");
+const lightboxInstance = new SimpleLightbox(".gallery a");
 
-function clearGallery() {
+export function clearGallery() {
 
-    galleryContairer.innerHTML = ""; 
+    galleryContainer.innerHTML = ""; 
 };
 
 const loader = document.querySelector(".loader") 
@@ -24,6 +22,22 @@ export function hideLoader() {
     
 }; 
 
-// function createGallery(images) {
-//     images.map(()=>)
-// };
+export function createGallery(images) {
+    const markup = images.map(image =>
+        `<li class="gallery-item">
+            <a href="${image.largeImageURL}">
+                <img src="${image.webformatURL}" alt="${image.tags}">
+            </a>
+            <p> Likes ${image.likes} </p>
+            <p>Views ${image.views}</p> 
+            <p> Comments ${image.comments}</p>
+            <p> Downloads ${image.downloads}</p>
+        </li>`
+    ).join("");
+
+    galleryContainer.insertAdjacentHTML("beforeend", markup);
+    lightboxInstance.refresh();
+  
+};
+    
+    

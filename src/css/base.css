@@ -30,3 +30,69 @@ main {
 main:has(.back-link) {
   text-align: center;
 }
+
+.loader {
+  --color-1: #fff;
+  --color-2: #ff3d00;
+  --size: 1px;
+
+  width: calc(48 * var(--size));
+  height: calc(48 * var(--size));
+  border: calc(3 * var(--size)) solid var(--color-1);
+  border-radius: 50%;
+  /*display: inline-block;*/
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+.loader::after {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(40 * var(--size));
+  height: calc(40 * var(--size));
+  border-radius: 50%;
+  border: calc(3 * var(--size)) solid;
+  border-color: var(--color-2) transparent;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 24px;
+ 
+}
+
+button{
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #4E75FF;
+  color:aliceblue
+}
+
+.is-hidden {
+  display: none;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+
+.gallery-item img {
+  width: 100%;
+  display: block;
+}
+
+.gallery-item {
+  width: 360px;
+}
